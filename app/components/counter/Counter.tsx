@@ -10,6 +10,7 @@ import {
   incrementIfOdd,
   selectCount,
   selectStatus,
+  multiply,
 } from "@/lib/features/counter/counterSlice";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -42,6 +43,13 @@ export const Counter = () => {
           onClick={() => dispatch(increment())}
         >
           +
+        </button>
+        <button
+          className={styles.button}
+          aria-label="Multiply value"
+          onClick={() => dispatch(multiply(incrementValue))}
+        >
+          *
         </button>
       </div>
       <div className={styles.row}>

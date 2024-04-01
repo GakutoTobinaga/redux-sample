@@ -36,6 +36,12 @@ export const counterSlice = createAppSlice({
         state.value += action.payload;
       },
     ),
+    // 4/1 飛永付け足し, 掛け算関数
+    multiply: create.reducer(
+      (state, action: PayloadAction<number>) => {
+        state.value *= action.payload;
+      },
+    ),
     // The function below is called a thunk and allows us to perform async logic. It
     // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
     // will call the thunk with the `dispatch` function as the first argument. Async
@@ -70,7 +76,7 @@ export const counterSlice = createAppSlice({
 });
 
 // Action creators are generated for each case reducer function.
-export const { decrement, increment, incrementByAmount, incrementAsync } =
+export const { decrement, increment, incrementByAmount, incrementAsync, multiply } =
   counterSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
