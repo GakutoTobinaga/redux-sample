@@ -19,7 +19,7 @@ export const Counter = () => {
   const dispatch = useAppDispatch();
   const count = useAppSelector(selectCount);
   const status = useAppSelector(selectStatus);
-  const [incrementAmount, setIncrementAmount] = useState("2");
+  const [incrementAmount, setIncrementAmount] = useState("1");
 
   const incrementValue = Number(incrementAmount) || 0;
 
