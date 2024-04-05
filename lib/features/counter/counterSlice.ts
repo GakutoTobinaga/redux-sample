@@ -25,6 +25,13 @@ export const counterSlice = createAppSlice({
     incrementBy : create.reducer((state, action: PayloadAction<number>) => {
       state.value += action.payload;
     }),
+    changeTobinaga :create.reducer((state) => {
+      if(state.tobinaga == "ok") {
+        state.tobinaga = "ng"
+      } else {
+        state.tobinaga = "ok"
+      }
+    }),
     increment: create.reducer((state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -82,7 +89,7 @@ export const counterSlice = createAppSlice({
 });
 
 // Action creators are generated for each case reducer function.
-export const { decrement, increment, incrementBy, incrementByAmount, incrementAsync, multiply } =
+export const { decrement, increment, incrementBy, incrementByAmount, incrementAsync, multiply, changeTobinaga } =
   counterSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.

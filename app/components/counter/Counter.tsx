@@ -13,6 +13,7 @@ import {
   selectStatus,
   selectTobinaga,
   multiply,
+  changeTobinaga,
 } from "@/lib/features/counter/counterSlice";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -29,6 +30,7 @@ export const Counter = () => {
   const incrementValue = Number(incrementAmount) || 0;
 
   return (
+    <>
     <div>
       <div className={styles.row}>
         <button
@@ -41,7 +43,6 @@ export const Counter = () => {
         <span aria-label="Count" className={styles.value}>
           {count}
         </span>
-        <div>{tobinaga}</div>
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -62,6 +63,13 @@ export const Counter = () => {
           onClick={() => dispatch(incrementBy(3))}
         >
           +user
+        </button>
+        <button
+          className={styles.button}
+          aria-label="changeTobinaga"
+          onClick={() => dispatch(changeTobinaga())}
+        >
+          change Tobinaga
         </button>
       </div>
       <div className={styles.row}>
@@ -97,5 +105,7 @@ export const Counter = () => {
         </button>
       </div>
     </div>
+            <div>{tobinaga}</div>
+            </>
   );
 };
