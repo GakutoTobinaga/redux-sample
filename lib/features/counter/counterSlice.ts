@@ -30,6 +30,7 @@ export const counterSlice = createAppSlice({
         state.tobinaga = "ng"
       } else {
         state.tobinaga = "ok"
+        console.log("changedTobinaga")
       }
     }),
     increment: create.reducer((state) => {
@@ -46,6 +47,11 @@ export const counterSlice = createAppSlice({
     incrementByAmount: create.reducer(
       (state, action: PayloadAction<number>) => {
         state.value += action.payload;
+      },
+    ),
+    reset: create.reducer(
+      (state) => {
+        state.value = initialState.value;
       },
     ),
     // 4/1 飛永付け足し, 掛け算関数
@@ -89,7 +95,7 @@ export const counterSlice = createAppSlice({
 });
 
 // Action creators are generated for each case reducer function.
-export const { decrement, increment, incrementBy, incrementByAmount, incrementAsync, multiply, changeTobinaga } =
+export const { decrement, increment, reset, incrementBy, incrementByAmount, incrementAsync, multiply, changeTobinaga } =
   counterSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.

@@ -14,6 +14,7 @@ import {
   selectTobinaga,
   multiply,
   changeTobinaga,
+  reset,
 } from "@/lib/features/counter/counterSlice";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -60,9 +61,9 @@ export const Counter = () => {
         <button
           className={styles.button}
           aria-label="incrementBy"
-          onClick={() => dispatch(incrementBy(3))}
+          onClick={() => dispatch(incrementBy(4))}
         >
-          +user
+          + user
         </button>
         <button
           className={styles.button}
@@ -70,6 +71,13 @@ export const Counter = () => {
           onClick={() => dispatch(changeTobinaga())}
         >
           change Tobinaga
+        </button>
+        <button
+          className={styles.button}
+          aria-label="Reset"
+          onClick={() => dispatch(reset())}
+        >
+          Reset
         </button>
       </div>
       <div className={styles.row}>

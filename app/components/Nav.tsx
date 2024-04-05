@@ -5,14 +5,15 @@ import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 
 import styles from "../styles/layout.module.css";
-import { selectTobinaga } from "@/lib/features/counter/counterSlice";
+import { selectCount, selectTobinaga } from "@/lib/features/counter/counterSlice";
 
 export const Nav = () => {
-  const tobinaga = useAppSelector(selectTobinaga)
+  const count = useAppSelector(selectCount)
   const pathname = usePathname();
 
   return (
     <nav className={styles.nav}>
+      <div>nowCount: {count}</div>
       <Link
         className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}
         href="/"
