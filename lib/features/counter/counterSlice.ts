@@ -6,11 +6,13 @@ import { fetchCount } from "./counterAPI";
 export interface CounterSliceState {
   value: number;
   status: "idle" | "loading" | "failed";
+  tobinaga: "ok" | "ng"
 }
 
 const initialState: CounterSliceState = {
-  value: 0,
+  value: 10,
   status: "idle",
+  tobinaga: "ok",
 };
 
 // If you are not using async thunks you can use the standalone `createSlice`.
@@ -20,6 +22,9 @@ export const counterSlice = createAppSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: (create) => ({
+    incrementBy : create.reducer((state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    }),
     increment: create.reducer((state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -72,15 +77,16 @@ export const counterSlice = createAppSlice({
   selectors: {
     selectCount: (counter) => counter.value,
     selectStatus: (counter) => counter.status,
+    selectTobinaga: (counter) => counter.tobinaga,
   },
 });
 
 // Action creators are generated for each case reducer function.
-export const { decrement, increment, incrementByAmount, incrementAsync, multiply } =
+export const { decrement, increment, incrementBy, incrementByAmount, incrementAsync, multiply } =
   counterSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
-export const { selectCount, selectStatus } = counterSlice.selectors;
+export const { selectCount, selectStatus, selectTobinaga } = counterSlice.selectors;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

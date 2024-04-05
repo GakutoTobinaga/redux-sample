@@ -8,8 +8,10 @@ import {
   incrementAsync,
   incrementByAmount,
   incrementIfOdd,
+  incrementBy,
   selectCount,
   selectStatus,
+  selectTobinaga,
   multiply,
 } from "@/lib/features/counter/counterSlice";
 
@@ -19,6 +21,8 @@ import styles from "./Counter.module.css";
 export const Counter = () => {
   const dispatch = useAppDispatch();
   const count = useAppSelector(selectCount);
+  const count2 = useAppSelector((state) => state.counter.value);
+  const tobinaga = useAppSelector(selectTobinaga)
   const status = useAppSelector(selectStatus);
   const [incrementAmount, setIncrementAmount] = useState("1");
 
@@ -37,6 +41,7 @@ export const Counter = () => {
         <span aria-label="Count" className={styles.value}>
           {count}
         </span>
+        <div>{tobinaga}</div>
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -50,6 +55,13 @@ export const Counter = () => {
           onClick={() => dispatch(multiply(incrementValue))}
         >
           *
+        </button>
+        <button
+          className={styles.button}
+          aria-label="incrementBy"
+          onClick={() => dispatch(incrementBy(3))}
+        >
+          +user
         </button>
       </div>
       <div className={styles.row}>
