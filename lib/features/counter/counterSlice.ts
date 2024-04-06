@@ -14,7 +14,7 @@ const initialState: CounterSliceState = {
   status: "idle",
   tobinaga: "ok",
 };
-
+// initialstateは初期値として設定する値たち
 // If you are not using async thunks you can use the standalone `createSlice`.
 export const counterSlice = createAppSlice({
   name: "counter",
