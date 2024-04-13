@@ -23,7 +23,6 @@ import styles from "./Counter.module.css";
 export const Counter = () => {
   const dispatch = useAppDispatch();
   const count = useAppSelector(selectCount);
-  const count2 = useAppSelector((state) => state.counter.value);
   const tobinaga = useAppSelector(selectTobinaga)
   const status = useAppSelector(selectStatus);
   const [incrementAmount, setIncrementAmount] = useState("1");

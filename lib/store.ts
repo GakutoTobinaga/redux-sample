@@ -1,37 +1,26 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
+import { usernameSlice } from "./features/username/usernameSlice";
 import { counterSlice } from "./features/counter/counterSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 
 // `combineSlices` automatically combines the reducers using
-// their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(counterSlice, quotesApiSlice);
-// Infer the `RootState` type from the root reducer
+// combine... これで各地に点在するスライスをまとめて、configureでreducerを増やさなくてもOKにする。
+// conbineをしないなら点在するスライスを一個一個書かなくてはならないので、大変
+const rootReducer = combineSlices(counterSlice, quotesApiSlice, usernameSlice);
+// 型を抽出して手間を省く
 export type RootState = ReturnType<typeof rootReducer>;
 
-// `makeStore` encapsulates the store configuration to allow
-// creating unique store instances, which is particularly important for
-// server-side rendering (SSR) scenarios. In SSR, separate store instances
-// are needed for each request to prevent cross-request state pollution.
+// makeStoreでは、全てのスライスやミドルウェアを設定するターミナルのような関数
 export const makeStore = () => {
   return configureStore({
     reducer: rootReducer,
-    // Adding the api middleware enables caching, invalidation, polling,
-    // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware().concat(quotesApiSlice.middleware);
     },
   });
 };
 
-export const makeStore2 = () => {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (buildGetDefaultMiddleware) => {
-      return buildGetDefaultMiddleware()
-    }
-  })
-}
 // Infer the return type of `makeStore`
 export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `AppDispatch` type from the store itself
